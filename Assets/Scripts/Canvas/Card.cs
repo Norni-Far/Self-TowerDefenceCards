@@ -1,9 +1,15 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Card : MonoBehaviour, ICard
 {
-    public float scaleNowCard = 1;
+    public ListCardDeck listCardDeck;
+    [SerializeField] private float scaleMaxCard = 1f;
+    [SerializeField] private float scaleMinCard = 0;
+    [SerializeField] private Vector2 newPoint;
+    private float speedApplicationScale = 0.01f;
+    private float scaleNowCard = 1;
     private float ScaleNowCard
     {
         get
@@ -14,12 +20,14 @@ public class Card : MonoBehaviour, ICard
         {
             if (value < scaleMaxCard && value > scaleMinCard)
                 scaleNowCard = value;
+            else
+                speedApplicationScale = 0;
         }
     }
-    private float speedApplicationScale = 0.01f;
-    [SerializeField] private float scaleMaxCard = 1.5f;
-    [SerializeField] private float scaleMinCard = 1;
-    [SerializeField] private Vector2 newPoint;
+     public void Awake()
+    {
+        scaleNowCard = transform.localScale.x;
+    }
     public void Application()
     {
         ScaleNowCard += speedApplicationScale;
@@ -27,7 +35,7 @@ public class Card : MonoBehaviour, ICard
     }
     public void MoveToPoint(Vector2 point)
     {
-        transform.position = Vector2.MoveTowards(transform.position, point, int.MaxValue);
+        transform.localPosition = point;
     }
     public void Destroy()
     {
@@ -38,7 +46,11 @@ public class Card : MonoBehaviour, ICard
     {
         throw new System.NotImplementedException();
     }
-
+    public void SelectCard()
+    {
+        transform.AddComponent<MoveToMouse>();
+        listCardDeck.SelectCard(gameObject);
+    }
     public void ReturnToTheDeck()
     {
         throw new System.NotImplementedException();
@@ -46,6 +58,5 @@ public class Card : MonoBehaviour, ICard
     public void Update()
     {
         Application();
-        MoveToPoint(newPoint);
     }
 }
