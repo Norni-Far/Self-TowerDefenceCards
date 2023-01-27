@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public void SpawnObject(IEnemy enmey, Transform positionOfSpawn)
+    public void SetSpawnObject(IEnemy enmey, Transform positionOfSpawn)
     {
-
 
 
 
     }
 
-    public void SpawnObject(ITower tower, Transform positionOfSpawn)
+    public void SetSpawnObject(ITower tower, Transform positionOfSpawn)
     {
 
 
 
-
+       
     }
 
 }
