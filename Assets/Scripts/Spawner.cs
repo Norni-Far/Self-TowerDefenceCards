@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public void SpawnObject(IEnemy enmey, Transform positionOfSpawn)
+    public static Spawner instance;
+    private void Awake()
     {
-
-
-
-
+        instance = this;
     }
 
-    public void SpawnObject(ITower tower, Transform positionOfSpawn)
+    public IEnemy SetSpawnObject(IEnemy enemy, Vector3 positionOfSpawn)
     {
+        IEnemy newEnemy = Instantiate(enemy.GetGameObject(), positionOfSpawn, new Quaternion(0, 0, 0, 0), null).GetComponent<IEnemy>();
 
+        return newEnemy;
+    }
 
+    public ITower SetSpawnObject(ITower tower, Vector3 positionOfSpawn)
+    {
+        ITower newTower = Instantiate(tower.GetGameObject(), positionOfSpawn, new Quaternion(0, 0, 0, 0), null).GetComponent<ITower>();
 
-
+        return newTower;
     }
 
 }

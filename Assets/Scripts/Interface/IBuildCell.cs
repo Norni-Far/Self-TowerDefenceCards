@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IBuildCell
 {
-    public void SetCardsInPos(ICards card);
+    public bool SetCardsInPos(ICards card);
 
 }

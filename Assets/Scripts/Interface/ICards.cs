@@ -4,9 +4,14 @@ using UnityEngine;
 
 public interface ICards
 {
+    enum ModeCard
+    {
+        ITower,
+        IBonusTowers
+    }
+
     public int IdCards { get; set; }
-
-
+    public ModeCard selfMode { get; set; }
 
 
 }
