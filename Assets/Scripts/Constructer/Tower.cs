@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
-public abstract class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour, ITower
 {
     public List<IEnemy> seesEnemyes = new List<IEnemy>();
 
@@ -12,7 +12,6 @@ public abstract class Tower : MonoBehaviour
         if (other.TryGetComponent(out IEnemy enemy))
         {
             seesEnemyes.Add(enemy);
-
         }
     }
 
@@ -24,4 +23,7 @@ public abstract class Tower : MonoBehaviour
         }
     }
 
+    public abstract void Fire(IEnemy enemy);
+    public abstract void ShowFire(Transform target);
+    public GameObject GetGameObject() => gameObject;
 }

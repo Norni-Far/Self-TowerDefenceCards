@@ -5,18 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BuildCell : MonoBehaviour, IBuildCell
 {
-    [SerializeField] private Spawner spawner;
-
     [SerializeField] private Transform placeForSetTower;
 
     private void Start()
     {
-       
+
     }
 
     public bool SetCardsInPos(ICards card)
     {
         // signal for spawn base )(send id)
+
+        if (placeForSetTower.childCount > 0) return false;
 
         switch (card.selfMode)
         {
@@ -35,12 +35,12 @@ public class BuildCell : MonoBehaviour, IBuildCell
     {
         try
         {
-            spawner.SetSpawnObject(TowerBase.instance.GetTower(idTower), placeForSetTower);
+            Spawner.instance.SetSpawnObject(TowerBase.instance.GetTower(idTower), placeForSetTower.position);
             return true;
         }
         catch (System.Exception ex)
         {
-            throw new System.Exception("can't SetTowerOnPlace = " + ex.Message);    
+            throw new System.Exception("can't SetTowerOnPlace = " + ex.Message);
             return false;
         }
 
@@ -48,7 +48,7 @@ public class BuildCell : MonoBehaviour, IBuildCell
 
     private bool SetBonusOnTower(int idBonus)
     {
-
+        throw new System.Exception("We haven't bonus");
 
         return true;
     }

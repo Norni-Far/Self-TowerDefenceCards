@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ITower
 {
-   
-    
+
+    public GameObject GetGameObject();
 
 }
