@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICards
 {
-    enum ModeCard
+    public enum ModeCard
     {
         ITower,
         IBonusTowers

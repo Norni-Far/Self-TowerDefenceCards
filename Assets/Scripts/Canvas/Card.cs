@@ -2,14 +2,22 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Card : MonoBehaviour, ICard
+public class Card : MonoBehaviour, ICard, ICards
 {
+    public enum ModeCard
+    {
+        ITower,
+        IBonusTowers
+    }
     public ListCardDeck listCardDeck;
     [SerializeField] private float scaleMaxCard = 1f;
     [SerializeField] private float scaleMinCard = 0;
     [SerializeField] private Vector2 newPoint;
+    [SerializeField]private float speedApplication = 0.01f;
     private float speedApplicationScale = 0.01f;
     private float scaleNowCard = 1;
+    public LineRender lineRender;
+    public BuildTower buildTower;
     private float ScaleNowCard
     {
         get
@@ -24,8 +32,13 @@ public class Card : MonoBehaviour, ICard
                 speedApplicationScale = 0;
         }
     }
-     public void Awake()
+
+    public int IdCards { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public ICards.ModeCard selfMode { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public void Awake()
     {
+       // selfMode = ModeCard.ITower;
         scaleNowCard = transform.localScale.x;
     }
     public void Application()
@@ -44,19 +57,34 @@ public class Card : MonoBehaviour, ICard
 
     public void IncreaseCard()
     {
-        throw new System.NotImplementedException();
+        lineRender.enabled = false;
+        listCardDeck.SelectCard(gameObject);
+         transform.localPosition = new Vector2(0, 0);
+         speedApplicationScale = speedApplication;
+         scaleMaxCard = 3;
+    }
+    public void DecreaseCard()
+    {
+        lineRender.enabled = false;
+        listCardDeck.ReturnToDeck(gameObject);
+        speedApplicationScale = -speedApplication;
+        scaleMinCard = 1;
     }
     public void SelectCard()
     {
-        transform.AddComponent<MoveToMouse>();
-        listCardDeck.SelectCard(gameObject);
+        //transform.AddComponent<MoveToMouse>();
+        lineRender.enabled = true;
+        buildTower.card = this;
+        //listCardDeck.SelectCard(gameObject);
     }
     public void ReturnToTheDeck()
     {
         throw new System.NotImplementedException();
     }
-    public void Update()
+    public void FixedUpdate()
     {
         Application();
     }
+
+    
 }

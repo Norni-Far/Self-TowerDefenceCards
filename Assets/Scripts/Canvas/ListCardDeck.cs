@@ -6,6 +6,7 @@ using UnityEngine;
 public class ListCardDeck : MonoBehaviour
 {
     [SerializeField] private Transform selectFolder;
+    [SerializeField] private BuildTower buildTower;
     List<GameObject> listCardDeck = new List<GameObject>();
     [SerializeField] private GameObject[] arrayAllCard = new GameObject[20];
     [SerializeField] private Transform deck;
@@ -13,8 +14,14 @@ public class ListCardDeck : MonoBehaviour
     public void AddCard(int numberCard)
     {
         GameObject card = Instantiate(arrayAllCard[numberCard], deck);
-        card.GetComponent<Card>().listCardDeck = this;
+        Card cardScr = card.GetComponent<Card>();
+        cardScr.listCardDeck = this;
+        cardScr.buildTower = buildTower;
         listCardDeck.Add(card);
+    }
+    public void ReturnToDeck(GameObject card)
+    {
+        card.transform.SetParent(deck);
     }
     public void DestrouCard(int numberCard)
     {
@@ -22,10 +29,12 @@ public class ListCardDeck : MonoBehaviour
     }
     public void SelectCard(GameObject card)
     {
-        card.transform.parent = selectFolder.transform;
+        card.transform.SetParent(selectFolder);
     }
     private void Start()
     {
+        AddCard(0);
+        AddCard(0);
         AddCard(0);
     }
 }
