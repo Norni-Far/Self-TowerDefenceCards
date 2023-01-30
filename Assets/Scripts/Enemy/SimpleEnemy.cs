@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SimpleEnemy : Enemy
 {
-    [SerializeField] private int health;
+    [SerializeField] private int startHealth;
 
     private void Awake()
     {
-        Health = health;
+        Health = startHealth;
     }
 
 
