@@ -18,12 +18,12 @@ public class BuildCell : MonoBehaviour, IBuildCell
 
         if (placeForSetTower.childCount > 0) return false;
 
-        switch (card.selfMode)
+        switch (card.SelfMode)
         {
-            case ICards.ModeCard.ITower:
+            case (int)ICards.ModeCard.ITower:
                 if (SetTowerOnPlace(card.IdCards)) return true;
                 break;
-            case ICards.ModeCard.IBonusTowers:
+            case (int)ICards.ModeCard.IBonusTowers:
                 if (SetBonusOnTower(card.IdCards)) return true;
                 break;
         }

@@ -6,14 +6,14 @@ public class Card : MonoBehaviour, ICard, ICards
 {
     public enum ModeCard
     {
-        ITower,
-        IBonusTowers
+        ITower = 0,
+        IBonusTowers = 1
     }
     public ListCardDeck listCardDeck;
     [SerializeField] private float scaleMaxCard = 1f;
     [SerializeField] private float scaleMinCard = 0;
     [SerializeField] private Vector2 newPoint;
-    [SerializeField]private float speedApplication = 0.01f;
+    [SerializeField] private float speedApplication = 0.01f;
     private float speedApplicationScale = 0.01f;
     private float scaleNowCard = 1;
     public LineRender lineRender;
@@ -33,12 +33,15 @@ public class Card : MonoBehaviour, ICard, ICards
         }
     }
 
-    public int IdCards { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public ICards.ModeCard selfMode { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+   
+
+
+    public int IdCards { get; set; }
+    public int SelfMode { get; set; }
 
     public void Awake()
     {
-       // selfMode = ModeCard.ITower;
+        // selfMode = ModeCard.ITower;
         scaleNowCard = transform.localScale.x;
     }
     public void Application()
@@ -59,9 +62,9 @@ public class Card : MonoBehaviour, ICard, ICards
     {
         lineRender.enabled = false;
         listCardDeck.SelectCard(gameObject);
-         transform.localPosition = new Vector2(0, 0);
-         speedApplicationScale = speedApplication;
-         scaleMaxCard = 3;
+        transform.localPosition = new Vector2(0, 0);
+        speedApplicationScale = speedApplication;
+        scaleMaxCard = 3;
     }
     public void DecreaseCard()
     {
@@ -86,5 +89,5 @@ public class Card : MonoBehaviour, ICard, ICards
         Application();
     }
 
-    
+
 }

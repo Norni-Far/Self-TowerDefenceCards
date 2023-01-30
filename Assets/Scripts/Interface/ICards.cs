@@ -6,12 +6,12 @@ public interface ICards
 {
     public enum ModeCard
     {
-        ITower,
-        IBonusTowers
+        ITower = 0,
+        IBonusTowers = 1
     }
 
     public int IdCards { get; set; }
-    public ModeCard selfMode { get; set; }
-
+    public int SelfMode { get; set; }
+  
 
 }
