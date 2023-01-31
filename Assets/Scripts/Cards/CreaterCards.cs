@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CreaterCards : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Карточки расс и их id")]
+    [SerializeField] private List<ModeCards> cardsOfRace = new List<ModeCards>();
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[Serializable]
+public class ModeCards
+{
+    [SerializeField] public string nameOfRace;
+
+    [Header("Tower карты")]
+    [SerializeField] public List<GameObject> towerCards = new List<GameObject>();
+
+    [Header("Бонус карты")]
+    [SerializeField] public List<GameObject> bonusCards = new List<GameObject>();
 }
