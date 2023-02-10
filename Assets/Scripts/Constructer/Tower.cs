@@ -23,7 +23,9 @@ public abstract class Tower : MonoBehaviour, ITower
         }
     }
 
+    public abstract bool SetBonus(IUpgratePowerBonus bonus);
     public abstract void Fire(IEnemy enemy);
     public abstract void ShowFire(Transform target);
     public GameObject GetGameObject() => gameObject;
+
 }

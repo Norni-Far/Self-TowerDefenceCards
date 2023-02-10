@@ -47,4 +47,10 @@ public class SimpleTower : Tower
         gun.transform.LookAt(target.transform.localPosition);
     }
 
+    public override bool SetBonus(IUpgratePowerBonus bonus)
+    {
+        print("!!! Bonus have set !!!");
+
+        return true;
+    }
 }

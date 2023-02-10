@@ -7,4 +7,6 @@ public interface ITower
 
     public GameObject GetGameObject();
 
+    public bool SetBonus(IUpgratePowerBonus bonus);
+
 }
